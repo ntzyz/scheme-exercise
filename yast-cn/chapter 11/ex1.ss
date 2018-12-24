@@ -20,3 +20,11 @@
       (cdr splitted-str))))
 
 (title-style "the cathedral and the bazaar")
+
+(define (title-style-v2 str)
+  (let loop((ss (string->list str)) (flag #t) (res '()))
+    (if (null? ss)
+      (list->string (reverse res))
+      (loop (cdr ss) (char-whitespace? (car ss)) (cons (if flag (char-upcase (car ss)) (car ss)) res)))))
+
+(title-style-v2 "the cathedral and the bazaar")
